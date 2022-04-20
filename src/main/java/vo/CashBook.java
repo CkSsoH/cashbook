@@ -1,7 +1,7 @@
 package vo;
 
-public class Cashbook {
-	private int cashbookNo;
+public class CashBook {
+	private int cashBookNo;
 	private String cashDate;
 	private String kind;
 	private int cash;
@@ -9,11 +9,11 @@ public class Cashbook {
 	private String updateDate;
 	private String createDate;
 	
-	public int getCashbookNo() {
-		return cashbookNo;
+	public int getCashBookNo() {
+		return cashBookNo;
 	}
-	public void setCashbookNo(int cashbookNo) {
-		this.cashbookNo = cashbookNo;
+	public void setCashBookNo(int cashBookNo) {
+		this.cashBookNo = cashBookNo;
 	}
 	public String getCashDate() {
 		return cashDate;
@@ -54,7 +54,7 @@ public class Cashbook {
 	
 	@Override
 	public String toString() {
-		return "Cashbook [cashbookNo=" + cashbookNo + ", cashDate=" + cashDate + ", kind=" + kind + ", cash=" + cash
+		return "CashBook [cashBookNo=" + cashBookNo + ", cashDate=" + cashDate + ", kind=" + kind + ", cash=" + cash
 				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
 	}
 }
