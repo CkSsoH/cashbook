@@ -35,6 +35,9 @@
 		System.out.println(totalTd + " <- totalTd CashBookListByMonth.jsp");
 		
 	%>
+	<div>
+		<a href="<%=request.getContextPath()%>/TagController">tags</a>
+	</div>
 	<h2><%=y%>년 <%=m%>월</h2>
 
 	<div>
