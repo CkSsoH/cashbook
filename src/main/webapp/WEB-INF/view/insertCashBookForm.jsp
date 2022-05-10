@@ -12,8 +12,7 @@
          <tr>
             <td>날짜</td>
             <td>
-               <input type="text" name="cashDate" 
-                     value="<%=(String)request.getAttribute("cashDate")%>" readonly="readonly">
+               <input type="text" name="cashDate" value="<%=(String)request.getAttribute("cashDate")%>" readonly="readonly">
             </td>
          </tr>
          <tr>

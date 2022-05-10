@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CashBookDao;
 import vo.CashBook;
@@ -18,6 +19,15 @@ public class InsertCashBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		if(sessionMemberId == null) {
+			// 로그인 되지 않은 상태라면
+			response.sendRedirect(request.getContextPath()+"/LoginController");
+			return;
+		}
+		
 		String y = request.getParameter("y");
 		String m = request.getParameter("m");
 		String d = request.getParameter("d");
@@ -27,6 +37,15 @@ public class InsertCashBookController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String sessionMemberId = (String)session.getAttribute("sessionMemberId");
+		if(sessionMemberId == null) {
+			// 로그인 되지 않은 상태라면
+			response.sendRedirect(request.getContextPath()+"/LoginController");
+			return;
+		}
+		
 		request.setCharacterEncoding("utf-8");
 		String cashDate = request.getParameter("cashDate");
 		String kind = request.getParameter("kind");
@@ -43,6 +62,7 @@ public class InsertCashBookController extends HttpServlet {
 		cashBook.setKind(kind);
 		cashBook.setCash(cash);
 		cashBook.setMemo(memo);
+		cashBook.setMemberId(sessionMemberId);
 		
 		List<String> hashtag = new ArrayList<>();
 		//자바의 문자(String)는 수정불가,불변 (수정하면 새로 생기는거임)
@@ -60,7 +80,6 @@ public class InsertCashBookController extends HttpServlet {
 		for(String h : hashtag) {
 			System.out.println(h + "<-- hashtag InsertCashBookController.doPost()");
 		}
-		
 		CashBookDao cashBookDao = new CashBookDao();
 		cashBookDao.insertCashBook(cashBook, hashtag);
 		

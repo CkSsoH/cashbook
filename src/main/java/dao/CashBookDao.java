@@ -23,8 +23,8 @@ public class CashBookDao {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
 			conn.setAutoCommit(false); // 자동커밋 막는것 (자동커밋 해제) (앞으로 커밋해줘야하고, 롤백도 해줘야함)
 			
-			String sql = "INSERT INTO cashbook(cash_date,kind,cash,memo,update_date,create_date)"
-					+ " VALUES(?,?,?,?,NOW(),NOW())";
+			String sql = "INSERT INTO cashbook(cash_date,kind,cash,memo,update_date,create_date,member_id)"
+					+ " VALUES(?,?,?,?,NOW(),NOW(),?)";
 			
 			stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS); // 입력직후 기본키값을 select 하는 jdbc API
 			//PreparedStatement.RETURN_GENERATED_KEYS 매개변수 입력하면 (입력하자마자 insert + select 까지 실행함)
@@ -35,6 +35,7 @@ public class CashBookDao {
 			stmt.setString(2, cashBook.getKind());
 			stmt.setInt(3, cashBook.getCash());
 			stmt.setString(4, cashBook.getMemo());
+			stmt.setString(5, cashBook.getMemberId());
 			stmt.executeUpdate(); // insert 실행하는거 ( select 도 실행하려면)
 			rs = stmt.getGeneratedKeys(); // select 실행하고 rs 에 담는다
 			//방금입력된 키는

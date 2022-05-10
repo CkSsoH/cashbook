@@ -8,6 +8,7 @@ public class CashBook {
 	private String memo;
 	private String updateDate;
 	private String createDate;
+	private String memberId;
 	
 	public int getCashBookNo() {
 		return cashBookNo;
@@ -52,9 +53,18 @@ public class CashBook {
 		this.createDate = createDate;
 	}
 	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
 	@Override
 	public String toString() {
 		return "CashBook [cashBookNo=" + cashBookNo + ", cashDate=" + cashDate + ", kind=" + kind + ", cash=" + cash
-				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
+				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + ", memberId="
+				+ memberId + "]";
 	}
+	
 }
